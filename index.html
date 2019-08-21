@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+<script>
+ var op;
+ var oper;
+function clr()
+{
+document.getElementById("dt").disabled=false;
+document.getElementById("p").disabled=false;
+document.getElementById("m").disabled=false;
+document.getElementById("mu").disabled=false;
+document.getElementById("di").disabled=false;
+document.getElementById("result").value="";
+}
+
+function d(val)
+{
+if(op==true)
+{
+clr();
+op=false;
+}
+if(oper==true)
+{
+    clr();
+    oper=false;
+}
+document.getElementById("p").disabled=false;
+document.getElementById("m").disabled=false;
+document.getElementById("mu").disabled=false;
+document.getElementById("di").disabled=false;
+
+document.getElementById("result").value+=val;
+
+}
+
+function dot()
+{
+if(document.getElementById("result").value=="")
+{
+    document.getElementById("result").value="0.";
+    document.getElementById("dt").disabled=true;
+}
+else
+{
+    document.getElementById("result").value+=".";
+    document.getElementById("dt").disabled=true;
+}
+
+}
+
+
+
+function back()
+{
+var value = document.getElementById("result").value;
+if(document.getElementById("result").value.substr(value.length-1,value.length)==".")
+{
+document.getElementById("dt").disabled=false;
+}
+if(document.getElementById("result").value.substr(value.length-1,value.length)=="+")
+{
+document.getElementById("p").disabled=false;
+document.getElementById("m").disabled=false;
+document.getElementById("mu").disabled=false;
+document.getElementById("di").disabled=false;
+}
+if(document.getElementById("result").value.substr(value.length-1,value.length)=="-")
+{
+    document.getElementById("p").disabled=false;
+document.getElementById("m").disabled=false;
+document.getElementById("mu").disabled=false;
+document.getElementById("di").disabled=false;
+}
+if(document.getElementById("result").value.substr(value.length-1,value.length)=="*")
+{
+    document.getElementById("p").disabled=false;
+document.getElementById("m").disabled=false;
+document.getElementById("mu").disabled=false;
+document.getElementById("di").disabled=false;
+}
+if(document.getElementById("result").value.substr(value.length-1,value.length)=="/")
+{
+    document.getElementById("p").disabled=false;
+document.getElementById("m").disabled=false;
+document.getElementById("mu").disabled=false;
+document.getElementById("di").disabled=false;
+}
+    document.getElementById("result").value = value.substr(0, value.length - 1);
+}
+
+function solve()
+{
+
+var x=document.getElementById("result").value;
+var y=eval(x)
+document.getElementById("result").value=y;
+op=true;
+oper=true;
+}
+
+function operator(c)
+{
+switch(c)
+{
+case "+": document.getElementById("dt").disabled=false;d('+');document.getElementById("p").disabled=true;
+document.getElementById("p").disabled=true;
+document.getElementById("m").disabled=true;
+document.getElementById("mu").disabled=true;
+document.getElementById("di").disabled=true;break;
+case "-": document.getElementById("dt").disabled=false;d('-');document.getElementById("m").disabled=true;
+document.getElementById("p").disabled=true;
+document.getElementById("m").disabled=true;
+document.getElementById("mu").disabled=true;
+document.getElementById("di").disabled=true;break;
+case "*": document.getElementById("dt").disabled=false;d('*');document.getElementById("mu").disabled=true;
+document.getElementById("p").disabled=true;
+document.getElementById("m").disabled=true;
+document.getElementById("mu").disabled=true;
+document.getElementById("di").disabled=true;break;
+case "/": document.getElementById("dt").disabled=false;d('/');document.getElementById("di").disabled=true;
+document.getElementById("p").disabled=true;
+document.getElementById("m").disabled=true;
+document.getElementById("mu").disabled=true;
+document.getElementById("di").disabled=true;
+break;
+}
+}
+
+</script>
+
+</head>
+<body>
+<table width="200">
+<tr>
+<td colspan=4> <input type="text" id="result" style="text-align: right; width: 280px;" > </td>
+<td><input type="button" value="AC" style="background-color:brown;" onclick="clr()" ></td>
+
+</tr>
+
+<tr>
+<td ><input type="button" value="1" onclick="d('1')"></td>
+<td><input type="button" value="2" onclick="d('2')"></td>
+<td><input type="button" value="3" onclick="d('3')"></td>
+<td><input type="button" value="+" id="p" onclick="operator('+')"></td>
+<td><input type="button" value="<-" onclick="back()"></td>
+</tr>
+
+
+
+<tr>
+<td><input type="button" value="4" onclick="d('4')"></td>
+<td><input type="button" value="5" onclick="d('5')"></td>
+<td><input type="button" value="6" onclick="d('6')"></td>
+<td><input type="button" value="-" id="m" onclick="operator('-')"></td>
+
+</tr>
+
+<tr>
+<td><input type="button" value="7" onclick="d('7')"></td>
+<td><input type="button" value="8" onclick="d('8')"></td>
+<td><input type="button" value="9" onclick="d('9')"></td>
+<td><input type="button" value="*" id="mu" onclick="operator('*')"></td>
+</tr>
+
+<tr>
+<td><input type="button"  id="dt" value="." onclick="dot()"  ></td>
+<td><input type="button" value="0" onclick="d('0')"></td>
+<td><input type="button" value="=" onclick="solve()"></td>
+<td><input type="button" value="/" id="di" onclick="operator('/')"></td>
+</tr>
+
+
+
+
+
+</table>
+
+
+<body>
+</html>
